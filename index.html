@@ -1480,14 +1480,17 @@ function switchTab(tab){
   document.getElementById('tab-all').className='tab'+(tab=='all'?' on':'');
   document.getElementById('tab-fav').className='tab'+(tab=='fav'?' on':'');
   document.getElementById('tab-relief').className='tab'+(tab=='relief'?' on':'');
-  // Toggle visibility of regular content vs relief content
   var isRelief = tab=='relief';
   document.getElementById('card-list').style.display = isRelief?'none':'';
-  document.getElementById('tbl-wrap').style.display = isRelief?'none !important':'';
+  var tblWrap=document.getElementById('tbl-wrap');
+  if(isRelief){ tblWrap.setAttribute('style','display:none!important'); }
+  else{ tblWrap.removeAttribute('style'); }
   document.getElementById('relief-list').className = isRelief?'show':'';
   document.getElementById('relief-filter-row').style.display = isRelief?'flex':'none';
   document.getElementById('relief-empty').style.display = 'none';
-  // Hide regular filters when on relief tab
+  document.getElementById('none').style.display = 'none';
+  document.getElementById('fav-empty').style.display = 'none';
+  document.getElementById('more').style.display = 'none';
   if(isRelief){
     document.getElementById('search-bar').style.display='none';
     document.getElementById('fil').classList.remove('open');
